@@ -11,5 +11,13 @@ pipeline {
         sh 'mvn test'
       }
     }
+    stage ('Sonar Analysis') {
+      environment {
+        scannerHome = tool 'SONAR_SCANNER'
+      }
+      steps {
+        sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://192.168.1.157:9000 -Dsonar.login=a6b0a4ad6f009f5ae9b53ab49bf39766dd180c07 -Dsonar.java.binaries=target"
+      }
+    }
   }
 }
