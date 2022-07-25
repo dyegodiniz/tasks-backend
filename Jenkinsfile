@@ -34,5 +34,15 @@ pipeline {
         sh 'echo testes de API'
       }
     }
+    stage ('Deploy Backend') {
+      steps {
+        dir('frontend') {
+          git 'https://github.com/dyegodiniz/tasks-frontend'
+          deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://192.168.1.157:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
+          sh 'mvn clean package -DskipTests=true'
+        }
+        
+      }
+    }
   }
 }
