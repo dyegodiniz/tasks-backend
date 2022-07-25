@@ -34,7 +34,7 @@ pipeline {
         sh 'echo testes de API'
       }
     }
-    stage ('Deploy Backend') {
+    stage ('Deploy Frontend') {
       steps {
         dir('frontend') {
           git 'https://github.com/dyegodiniz/tasks-frontend'
