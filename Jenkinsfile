@@ -29,5 +29,10 @@ pipeline {
         deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://192.168.1.157:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
       }
     }
+    stage ('API test') {
+      steps {
+        sh 'echo testes de API'
+      }
+    }
   }
 }
